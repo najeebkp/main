@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import psycopg2
+import django_heroku
 
 DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -166,3 +167,4 @@ APPEND_SLASH = True
 
 import django.contrib.auth
 django.contrib.auth.LOGIN_URL = '/'
+django_heroku.settings(locals())
