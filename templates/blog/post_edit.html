@@ -1,0 +1,29 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<html>
+  <head>
+ <link href="{% static 'css/post.css' %}" rel="stylesheet">
+  </head>
+  <body>
+   <section>
+    <div class="form-group">
+<form method="post" action="show">
+    {% csrf_token %}
+  <label for="usr">Title:</label>
+  <input type="text" class="form-control" name="title">
+</div>
+</div>
+      <div class="text"></textarea>
+        <textarea placeholder="What's in your mind" name="content"></textarea>
+        <input type="submit" value="post"/>
+      </div>
+    </section>
+    <div class="overlay"></div>
+{%endblock%}
+    <script src="{% static 'js/post.js' %}"></script>
+{% block javascript %}
+        {% endblock %}
+  </body>
+</html>

@@ -1,0 +1,9 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+	<h1>{{post.title}}</h1>
+	<p><a href="{% url "blog:category_detail"  slug=post.category.slug%}">{{post.category}}</p></a>
+	{{post.body}}
+	
+{%endblock%}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+<html>
+<head>
+<link href="{% static 'css/card.css' %}" rel="stylesheet">
+</head>
+<center>
+<div class="row">
+  <div class="leftcolumn" style="height:200px;width:600px;">
+{%  for p in Post  %}
+    <div class="card">
+      
+                  <h1>{{ p.title }}</h1>
+<h5>{{p.created}}</h5>
+      <p>{{p.content}}</p><br>
+</div>
+{%endfor%}
+      
+
+      </center>
+    
+{%endblock%}
+</html>
+ 
+      
