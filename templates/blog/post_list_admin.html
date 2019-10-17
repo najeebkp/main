@@ -17,7 +17,7 @@
 	<tr>
 		<td>{{item.pk}}</td>
 		<td>{{item.title}}</td>
-		<td>{{item.body}}</td>
+		<td>{{item.body|truncatechars:50}}</td>
 		<td><a href="{% url 'blog:edit_post' pk=item.pk %}"><button class="btn btn-warning">Edit</button></a></td>
 		<td><a href="{% url 'blog:delete_post' pk=item.pk %}"><button class="btn btn-danger">Delete</button></a></td>
 	</tr>

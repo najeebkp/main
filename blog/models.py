@@ -32,7 +32,7 @@ class Post(models.Model):
         ('Draft','Draft'),
         )
     title=models.CharField(max_length=250)
-    
+    user=models.ForeignKey(User,null=True,blank=True,on_delete=models.CASCADE)
     body=models.TextField()
     category = models.ForeignKey('Category',on_delete=models.CASCADE)
     seo_title=models.CharField(max_length=250,blank=True,null=True)
@@ -42,9 +42,11 @@ class Post(models.Model):
     updated=models.DateTimeField(auto_now=True)
     status=models.CharField(max_length=10,default='Published',choices=STATUS_CHOICES)
 
+
     def save(self,*args,**kwargs):
         self.slug=slugify(self.title)
         super(Post,self).save(*args,**kwargs)
+        
     def __str__(self):
         return self.title
 

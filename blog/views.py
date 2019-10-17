@@ -45,11 +45,22 @@ def post_detail(request,slug):
 def category_detail(request,slug):
     template='blog/category_detail.html'
     category=get_object_or_404(Category,slug=slug)
+    objects_list=Post.objects.filter(status='Published')
     post=Post.objects.filter(category=category,status='Published')
+
+    paginator=Paginator(objects_list,1)
+    page=request.GET.get('page')
+    try:
+        items=paginator.page(page)
+    except PageNotAnInteger:
+        items=paginator.page(1)
+    except EmptyPage:
+        items=paginator.page(paginator.num_pages)
 
     context={
         'category':category,
         'post':post,
+        'items':items,
         }
     return render(request,template,context)
 
@@ -59,7 +70,9 @@ def new_post(request):
     
     try:
         if form.is_valid():
-            form.save()
+            post=form.save(commit=False)
+            post.user=request.user
+            post.save()
             messages.success(request,'posted successfully!!!')
     except Exception as e:
         form=PostForm()
@@ -73,8 +86,8 @@ def new_post(request):
 def post_list_admin(request):
     template='blog/post_list_admin.html'
     
-
-    post=Post.objects.all()
+    u=request.user
+    post=Post.objects.filter(user=u)
 
     paginator=Paginator(post,5)
     page=request.GET.get('page')
