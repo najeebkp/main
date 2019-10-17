@@ -29,7 +29,7 @@ SECRET_KEY = '5s^3&x5ggoceoak*o#(nu5%b3)c-c42c(e33uy89#b5!j80y4$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-TEMPLATE_DEBUG = True
+
 
 ALLOWED_HOSTS = ['aqueous-coast-24761.herokuapp.com']
 
