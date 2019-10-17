@@ -12,7 +12,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 
-
+@login_required(login_url="/login")
 def post_list(request):
     template='blog/post_list.html'
     
@@ -33,6 +33,7 @@ def post_list(request):
         }
     return render(request,template,context)
 
+@login_required(login_url="/login")
 def post_detail(request,slug):
     template='blog/post_detail.html'
 
@@ -42,6 +43,8 @@ def post_detail(request,slug):
         'post':post,
         }
     return render(request,template,context)
+
+@login_required(login_url="/login")
 def category_detail(request,slug):
     template='blog/category_detail.html'
     category=get_object_or_404(Category,slug=slug)
@@ -64,6 +67,8 @@ def category_detail(request,slug):
         }
     return render(request,template,context)
 
+
+@login_required(login_url="/login")
 def new_post(request):
     template='blog/new_post.html'
     form=PostForm(request.POST or None)
@@ -83,6 +88,7 @@ def new_post(request):
         }
     return render(request,template,context)
 
+@login_required(login_url="/login")
 def post_list_admin(request):
     template='blog/post_list_admin.html'
     
@@ -108,7 +114,7 @@ def post_list_admin(request):
 
 
 
-
+@login_required(login_url="/login")
 def edit_post(request,pk):
     template='blog/new_post.html'
 
@@ -131,6 +137,7 @@ def edit_post(request,pk):
         }
     return render(request,template,context)
 
+@login_required(login_url="/login")
 def delete_post(request,pk):
     template='blog/new_post.html'
 
@@ -152,6 +159,7 @@ def delete_post(request,pk):
         }
     return render(request,template,context)
 
+@login_required(login_url="/login")
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
